@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+    font-family: 'Consolas', 'Courier New', monospace;
+    /* Replace 'background.jpg' with your actual image filename and extension */
+    background-image: url('background.png'); 
+    background-size: cover;          /* Makes the image stretch to fill the whole screen */
+    background-position: center;     /* Centers the image perfectly */
+    background-repeat: no-repeat;    /* Prevents the image from tiling/repeating */
+    background-attachment: fixed;    /* Keeps the image frozen in place while scrolling */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+        .card {
+            background: #ff0000;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            z-index: 10;
+            border: 2px solid #002aff;
+            transform: scale(0.9);
+            animation: popIn 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+        @keyframes popIn {
+            to { transform: scale(1); }
+        }
+        h1 {
+            color: #000000;
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        p {
+            color: #ffd500;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        
+        /* New message container box surrounding the initialization sequence button */
+        .message-box {
+            border: 1px dashed #7d9dfe;
+            background: #050505;
+            padding: 25px 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.05);
+        }
+        .message-box h2 {
+            color: #8f00af;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            background-color: #1fe209;
+            color: #000000;
+            border: 2px solid #000000;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 900;
+            font-family: 'Consolas', 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 0 15px rgba(25, 26, 25, 0.4);
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #000000;
+            color: #c40000;
+            box-shadow: 0 0 25px rgba(255, 242, 0, 0.8);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .hidden-content {
+            display: none;
+        }
+        
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 25px;
+        }
+        .bday-img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .bday-img.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 4px;
+            height: 16px;
+            top: -20px;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bday-song" loop>
+    <source src="bday-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+
+    <div class="card">
+        <!-- FIRST STEP: The Message Box surrounding the Action Trigger Button -->
+        <div id="surprise-wrapper">
+            <div class="message-box">
+                <h2>[ Access Denied: Authentication Code Re Aaaaamaa ]</h2>
+                <p style="font-size: 0.95rem; margin-bottom: 20px;">
+                    This file contains encrypted memories and highly classified birthday documentation. Click below to bypass security filters.
+                </p>
+                <button class="btn" onclick="revealSurprise()">[ Bypass & Initialize ]</button>
+            </div>
+        </div>
+
+        <!-- SECOND STEP: Main Birthday Content (Revealed after transition click) -->
+        <div id="birthday-content" class="hidden-content">
+            <h1>&gt; HAPPY BIRTHDAY! SADAF KA ASHIQ</h1>
+            <p> Hijda ? oh sorry usman Wishing you an incredible year ahead. We wishTp become gay asap! or u can become a pornstar
+                LIKE JONNY SINS
+            </p>
+            
+            <!-- Gallery container for images -->
+            <div class="gallery">
+                <img id="img1" class="bday-img" src="image1.jpg" alt="Memory 1">
+                <img id="img2" class="bday-img" src="image2.jpg" alt="Memory 2">
+                <img id="img3" class="bday-img" src="image3.jpg" alt="Memory 3">
+            </div>
+        </div>
+    </div>
+
+    <script>
+       function revealSurprise() {
+    document.getElementById('surprise-wrapper').style.display = 'none';
+    document.getElementById('birthday-content').style.display = 'block';
+    
+    // This line triggers the audio playback
+    document.getElementById('bday-song').play().catch(error => {
+        console.log("Autoplay was prevented by the browser. Click required.");
+    });
+    
+    celebrate();
+
+    setTimeout(() => {
+        document.getElementById('img1').classList.add('show');
+    }, 500);
+
+    setTimeout(() => {
+        document.getElementById('img2').classList.add('show');
+    }, 1100);
+
+    setTimeout(() => {
+        document.getElementById('img3').classList.add('show');
+    }, 1700);
+}
+
+
+        function celebrate() {
+            const colors = ['#00ff66', '#00ff33', '#33ff66', '#00cc44', '#66ff99'];
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    confetti.style.width = (Math.random() * 2 + 3) + 'px';
+                    confetti.style.height = (Math.random() * 12 + 10) + 'px';
+                    
+                    const duration = Math.random() * 2 + 1.5;
+                    confetti.style.animationDuration = duration + 's';
+                    confetti.style.opacity = Math.random() * 0.5 + 0.5;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), duration * 1000);
+                }, i * 12);
+            }
+        }
+    </script>
+</body>
+</html>
